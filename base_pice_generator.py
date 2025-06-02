@@ -37,13 +37,12 @@ class BasePieceGenerator:
 
     @staticmethod
     def get_link(base_pieces:list[BasePiece], index):
-
         return base_pieces[index] if index else None
+    
     @staticmethod
     def set_links(base_pieces:list[BasePiece], piece:list, indexes:list):
         for i, index in enumerate(indexes):
-            if index:
-                piece[i] = BasePieceGenerator.get_link(base_pieces, index)
+            piece[i] = BasePieceGenerator.get_link(base_pieces, index)
 
 
 if __name__ == '__main__':

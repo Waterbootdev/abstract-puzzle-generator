@@ -1,12 +1,23 @@
 from directions import Directions
-class Coordinate:    
+
+class Coordinate:
+
     def __init__(self) -> None:
         self.index = 0
         self.x = 0
         self.y = 0
+
     def __repr__(self) -> str:
         return f"[{self.index}, [{self.x}, {self.y}]]"
-   
+    
+    def increment(self):
+        self.x += 1
+        self.y += 1
+
+    def decrement(self):
+        self.x -= 1
+        self.y -= 1
+
     def right(self, directions:Directions):
         return directions.x.add_to(self.x, self.y)
     
@@ -18,10 +29,34 @@ class Coordinate:
     
     def down(self, directions:Directions):
         return directions.y.add_to(self.x, self.y)
+
+    def matix_left(self, matrix, directions:Directions):
+        x, y = self.left(directions)
+        return matrix[x][y]
     
+    def matix_up(self, matrix, directions:Directions):
+        x, y = self.up(directions)
+        return matrix[x][y]
+
+    def matix_right(self, matrix, directions:Directions):
+        x, y = self.right(directions)
+        return matrix[x][y]
+    def matix_down(self, matrix, directions:Directions):
+        x, y = self.down(directions)
+        return matrix[x][y]
+    
+    def set_to_matrix(self, matrix) -> None:
+        matrix[self.x][self.y]= self.index
+    def get_from_matrix(self, matrix):
+        return matrix[self.x][self.y]
+        
     def step_right(self, directions:Directions):
         self.index += 1
         self.x, self.y = self.right(directions)
+    
+    def step_down(self, directions:Directions):
+        self.index += 1
+        self.x, self.y = self.down(directions)
     
     def step_left(self, directions:Directions):
         self.index -= 1
@@ -30,6 +65,14 @@ class Coordinate:
     def step_right_down(self, directions:Directions):
         self.x, self.y = self.right(directions)
         self.x, self.y = self.down(directions)
+
+    def scale_add(self, scale_factor_x: int, scale_factor_y: int, x:int, y:int):
+        coordinate = Coordinate()
+        coordinate.index = self.index
+        coordinate.x = scale_factor_x * self.x + x
+        coordinate.y = scale_factor_y * self.y + y        
+        return coordinate
+
 
     
       

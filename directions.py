@@ -1,4 +1,7 @@
 from normal_vector import NormalVector
+from ring import Ring
+from copy import deepcopy
+from itertools import chain
 class Directions:
     def __init__(self) -> None:
         
@@ -35,3 +38,43 @@ class Directions:
          
     def get_rotation(self):
         return self.__rotation
+    
+def directions_list():
+
+    current: Directions = Directions()      
+    directions = [deepcopy(current)]
+    current.rotate_ccw()
+        
+    while current.get_rotation() != 0:
+        directions.append(deepcopy(current))
+        current.rotate_ccw()
+        
+    return directions
+
+    
+def directions_list_list(directions_list :list[Directions]) -> list[list[Directions]]:
+    number_direction = len(directions_list)
+
+    ring = Ring(directions_list)
+
+    ring_list = [[] for _ in range(number_direction)]
+
+    for _ in range(number_direction):
+        for j in range(number_direction):
+            ring_list[j].append(ring.current())
+            ring.forward()
+
+        ring.forward()
+        
+
+    return ring_list
+
+DIRECTIONSLIST = directions_list()
+DIRECTIONSLISTLIST = directions_list_list(DIRECTIONSLIST)
+
+
+    
+if __name__ == '__main__':
+    print(set(DIRECTIONSLIST))
+
+    print(set(chain.from_iterable(DIRECTIONSLISTLIST)))

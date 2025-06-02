@@ -25,9 +25,7 @@ class BasePieceGenerator:
         self.backward = generate_backward(len(self.rotated))
 
     def Generate(self, get_new_base_piece):
-        def new_pice(frame_index, rotation_index, rotated, directions, coordinates):
-            return get_new_base_piece(frame_index, rotation_index, rotated, directions, coordinates)
-        base_pieces = list(starmap(new_pice, zip(self.frame_index, self.rotation_index, self.rotated, self.directions, self.coordinates)))
+        base_pieces = list(starmap(get_new_base_piece, zip(self.frame_index, self.rotation_index, self.rotated, self.directions, self.coordinates)))
         list(starmap(lambda base_piece, links, forward, backward: self.link(base_pieces, base_piece, links, forward, backward), zip(base_pieces, self.links, self.forward, self.backward)))
         return base_pieces
 

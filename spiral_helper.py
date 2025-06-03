@@ -1,0 +1,89 @@
+from itertools import chain
+from copy import copy
+from directions import Ring, DIRECTIONSLISTLIST, Directions
+from coordinate import Coordinate
+from spiral__helper import generate_coordinates, incremented_coordinate, generate_links, decrement_coordinates
+
+def generate_rotated(width, height, length):
+   
+    right = width
+    down = height - 1
+    left = width - 1
+    up = height - 2
+
+    step_counts = []
+
+    if height == 2:
+        step_counts = [right,down, left] 
+    else:
+        frame = [right, down, left, up]
+    
+        step_counts = copy(frame)
+
+        while frame[-1] > 2:
+            frame = [steps - 2 for steps in frame]
+            step_counts.extend(frame)
+
+        (last_right, last_down, last_left, last_up) = tuple(frame)
+
+        match last_up:
+            case 1:
+                step_counts.append(last_right - 2)
+            case 2:
+                step_counts.extend([last_right - 2, last_down - 2, last_left -2])
+    
+    rotated = list(chain.from_iterable(map(lambda steps_without_rotation : [False for _ in range(steps_without_rotation - 1)] + [True], step_counts)))
+
+    rotated[-1] = False
+
+    assert length == width * height
+    return rotated    
+
+def generate_frame_index(rotated:list[bool]):
+    frame_index = 0
+    rotation_index = 0
+    frame_indexes = []
+    rotation_indexes = []
+    
+    for rotate in rotated:
+        current_frame_index = frame_index
+        current_rotation_index = rotation_index
+        
+        if rotate:
+            if rotation_index < 3:
+                rotation_index += 1
+            else:
+                rotation_index = 0
+                frame_index += 1
+        
+        frame_indexes.append(current_frame_index)
+        rotation_indexes.append(current_rotation_index)
+
+    return frame_indexes, rotation_indexes 
+
+def generate_directions(rotated:list[bool]) -> list[list[Directions]]:
+    ring = Ring(DIRECTIONSLISTLIST)
+   
+    def generate(step_rotate):
+        current = ring.current()
+        if step_rotate:
+            ring.forward()
+        return current
+
+    return list(map(generate, rotated))
+ 
+def generate_coordinates_and_links(width, height, rotated:list[bool],  directions:list[list[Directions]]) -> tuple[list[Coordinate], list[list[int|None]]]:
+
+    coordinates = generate_coordinates(incremented_coordinate(), rotated, directions)
+
+    generated_links = generate_links(width, height, directions, coordinates)
+
+    return decrement_coordinates(coordinates), generated_links
+
+def generate_forward(length):
+    last = length - 1
+    return[None if i == last else i + 1 for i in range(length)]
+
+def generate_backward(length):
+    return[None if i == 0 else i - 1 for i in range(length)]
+

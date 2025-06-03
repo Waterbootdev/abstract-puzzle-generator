@@ -15,7 +15,7 @@ class RandomBasePieceKeyFitter:
 
         base_piece_generator :BasePieceGenerator = BasePieceGenerator(number_columns + 2, number_rows + 2)
     
-        spiral = base_piece_generator.Generate(new_piece)
+        spiral = base_piece_generator.generate(new_piece)
     
         self.spiral = spiral
    

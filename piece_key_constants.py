@@ -3,3 +3,8 @@ PIECE_KEY_NUMBER_DIGITS = 4
 PIECE_HIGHEST_DIGIT = str(PIECE_KEY_BASE - 1)
 MAX_PIECE_KEY = ''.join([PIECE_HIGHEST_DIGIT]*PIECE_KEY_NUMBER_DIGITS)
 MAX_NUMBER_PIECE_KEYS = int(MAX_PIECE_KEY, base=PIECE_KEY_BASE) + 1
+PIECE_KEY_DIGITS =  ''.join([str(digit) for digit in range(PIECE_KEY_BASE)])
+
+if __name__ == '__main__':
+    print(PIECE_KEY_DIGITS)
+

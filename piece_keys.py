@@ -16,3 +16,6 @@ PIECE_KEYS_ENDS_WITH_STARTS_WITH = {end : {start : [key for key in [key for key 
 
 
 
+
+if __name__ == '__main__':
+    print(PIECE_KEYS)

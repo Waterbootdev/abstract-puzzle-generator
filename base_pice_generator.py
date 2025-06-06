@@ -16,7 +16,7 @@ class BasePieceGenerator:
     
 if __name__ == '__main__':
 
-    base_pice_generator = BasePieceGenerator(4,4)
+    base_pice_generator = BasePieceGenerator(2,2)
 
     test = base_pice_generator.generate(BasePiece)
 

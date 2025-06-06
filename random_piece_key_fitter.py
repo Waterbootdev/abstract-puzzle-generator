@@ -6,15 +6,17 @@ class RandomBasePieceKeyFitter:
     
     def __init__(self, number_columns, number_rows) -> None:
         
+        if number_rows > number_columns or number_columns < 1:
+            raise ValueError() 
+       
+        base_piece_generator :BasePieceGenerator = BasePieceGenerator(number_columns + 2, number_rows + 2)
+    
         def new_piece(frame_index:int, rotation_index:int, rotated:bool, directions:list[Directions], coordinate:Coordinate):
             piece_key = PIECE_KEYS[0]
             if frame_index > 0:
                 piece_key = random.choice(PIECE_KEYS)
             return PieceKeyFitterPice(piece_key,frame_index, rotation_index, rotated, directions, coordinate)
-        
-
-        base_piece_generator :BasePieceGenerator = BasePieceGenerator(number_columns + 2, number_rows + 2)
-    
+       
         spiral = base_piece_generator.generate(new_piece)
     
         self.spiral = spiral

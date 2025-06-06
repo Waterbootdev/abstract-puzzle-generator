@@ -3,11 +3,13 @@ import os
 import time
 from edge import Edge
 from random_piece_key_fitter import RandomBasePieceKeyFitter
-from PieceKeyPiecePrinter import PieceKeyFitterPicePrinter, EscapeColor
+from piece_key_piece_printer import PieceKeyFitterPicePrinter, EscapeColor
 
 def main():
 
     while True:
+
+        os.system("clear")
 
         w = random.choice(range(8,45))
 
@@ -15,10 +17,8 @@ def main():
 
         fitter = RandomBasePieceKeyFitter(w,h)
     
-        os.system("clear")
-  
-        printer : PieceKeyFitterPicePrinter = PieceKeyFitterPicePrinter(fitter.spiral, 6, 4, 2, 1, 1)  
-   
+        printer : PieceKeyFitterPicePrinter = PieceKeyFitterPicePrinter(fitter.spiral, 6, 4, 2, 1, 0.5)  
+        
         printer.print_pieces(Edge.LEFT, EscapeColor.BLUE)      
         printer.print_pieces(Edge.RIGHT, EscapeColor.BLUE)      
         printer.print_pieces(Edge.UP, EscapeColor.BLUE)      

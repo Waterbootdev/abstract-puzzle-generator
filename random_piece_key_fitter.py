@@ -21,7 +21,6 @@ class RandomBasePieceKeyFitter:
    
         self.pieces = [piece_holder for piece_holder  in spiral if piece_holder.frame_index > 0]
         
-      
         self.first_piece = self.pieces[0]
 
     
@@ -40,7 +39,8 @@ class RandomBasePieceKeyFitter:
             assert isinstance(piece, PieceKeyFitterPice)
             fit(piece)
             piece = piece.forward
-          
+    
+    
 
 if __name__ == '__main__':
     random.seed(5)

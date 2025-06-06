@@ -2,7 +2,6 @@
 
 from spiral_helper import generate_rotated, generate_frame_index, generate_directions, generate_coordinates_and_links, generate_forward, generate_backward
 
-
 def generate_spiral(width, height):
     if height > width or width < 2 or height < 2:
         raise Exception()

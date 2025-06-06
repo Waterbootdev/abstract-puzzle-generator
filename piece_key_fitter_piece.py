@@ -9,8 +9,8 @@ class PieceKeyFitterPice(PieceKeyPiece):
     
     def __init__(self, piece_key: str , frame_index:int, rotation_index:int, rotated:bool, directions:list[Directions], coordinate:Coordinate) -> None:
         super().__init__(piece_key, PieceKeyFitterPice.OPPOSITEKEYS[piece_key], frame_index, rotation_index, rotated, directions, coordinate)
+        self.inital_piece_key = [a for a in piece_key] 
 
-        self.inital_piece_key = [a for a in piece_key]      
      
     def fit_left(self) -> tuple[bool, str]:
         left = self.links[Edge.LEFT]

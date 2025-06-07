@@ -1,12 +1,12 @@
 
 from piece_key_piece import PieceKeyPiece, Directions, Coordinate
 from edge import Edge
-from piece_keys import PIECE_KEYS, PIECE_KEYS_STARTS_WITH, PIECE_KEY_LISTS
+from piece_keys import PIECE_KEYS, PIECE_KEYS_STARTS_WITH, PIECE_KEY_LISTS, PIECE_KEYS_IDENTITY
 from typing import List, Tuple
 
 class PieceKeyFitterPice(PieceKeyPiece):
     
-    OPPOSITEKEYS = {key :''.join([{'0':'0', '1':'2', '2':'1'}[p] for p in key]) for key in  PIECE_KEYS}
+    OPPOSITEKEYS = {key: PIECE_KEYS_IDENTITY[''.join([{'0':'0', '1':'2', '2':'1'}[p] for p in key])] for key in  PIECE_KEYS}
     
     def __init__(self, piece_key: str , frame_index: int, rotation_index: int, rotated: bool, directions: List[Directions], coordinate: Coordinate) -> None:
         super().__init__(piece_key, PieceKeyFitterPice.OPPOSITEKEYS[piece_key], frame_index, rotation_index, rotated, directions, coordinate)

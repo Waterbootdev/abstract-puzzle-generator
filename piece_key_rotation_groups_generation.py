@@ -1,14 +1,14 @@
 from collections.abc import Callable
 from piece_key_constants import PIECE_KEY_NUMBER_DIGITS
-from piece_keys import List, PIECE_KEYS 
+from piece_keys import List, Dict, PIECE_KEYS, PIECE_KEYS_IDENTITY
 
 def rotate_piece_cw(piece: str) -> str:
-    return piece[-1] + piece[:-1]
+    return PIECE_KEYS_IDENTITY[piece[-1] + piece[:-1]]
 
 def rotate_piece_ccw(piece: str) -> str:
-    return piece[1:] + piece[0]
+    return PIECE_KEYS_IDENTITY[piece[1:] + piece[0]]
 
-def piece_rotation_group(rotate: Callable[[str] ,str], piece: str)-> List[str]:
+def piece_rotation_group(rotate: Callable[[str], str], piece: str) -> List[str]:
     
     if len(piece) != PIECE_KEY_NUMBER_DIGITS:
         raise ValueError()
@@ -20,10 +20,10 @@ def piece_rotation_group(rotate: Callable[[str] ,str], piece: str)-> List[str]:
          group.append(current)
     return group
 
-def shorten_rotation_group(group):
+def shorten_rotation_group(group: List[str]) -> List[str]:
     return group[:len(set(group))]
 
-def generate_rotation_groups(rotation: Callable[[str] ,str]=rotate_piece_ccw):
+def generate_rotation_groups(rotation: Callable[[str], str]=rotate_piece_ccw) -> Dict[str, List[str]]:
     done = set()
     groups = dict()
     for piece in PIECE_KEYS:
@@ -34,3 +34,5 @@ def generate_rotation_groups(rotation: Callable[[str] ,str]=rotate_piece_ccw):
             for piece in shorten_group:
                 done.add(piece)
     return groups
+
+PIECE_KEYS_ROTATIONS: Dict[str, List[str]] = generate_rotation_groups()

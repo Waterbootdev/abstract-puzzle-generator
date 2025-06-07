@@ -69,16 +69,16 @@ class Ring(Generic[T]):
     def at_index(self, index: int) -> T:
         return self.__data[index]
     
-    def curent_index(self):
+    def curent_index(self) -> int:
         return self.current_node.index
     
-    def backward_index(self):
+    def backward_index(self) -> int:
         return self.current_node.backward.index
     
-    def forward_index(self):
+    def forward_index(self) -> int:
         return self.current_node.forward.index
     
-    def set_to(self,index: int):
+    def set_to(self,index: int) -> None:
         self.current_node = self.nodes[index]
 
 

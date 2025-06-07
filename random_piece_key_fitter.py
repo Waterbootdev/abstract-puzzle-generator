@@ -1,4 +1,4 @@
-from piece_key_fitter_piece import List, PieceKeyFitterPice, PIECE_KEYS, Directions, Coordinate
+from piece_key_fitter_piece import List, PieceKeyFitterPice, PIECE_KEYS, Directions, Coordinate, Edge
 from base_pice_generator import BasePieceGenerator
 import random
 
@@ -30,10 +30,10 @@ class RandomBasePieceKeyFitter:
         
         printer_left = printer_left if printer_left else  lambda x, y: x 
         printer_up = printer_up if printer_up else  lambda x, y: x 
-        printer_right = printer_right if printer_right else  lambda x,y : x 
-        printer_down = printer_down if printer_down else  lambda x,y : x 
+        printer_right = printer_right if printer_right else  lambda x, y : x 
+        printer_down = printer_down if printer_down else  lambda x, y : x 
 
-        for fit  in [lambda p: printer_left(p, p.fit_left()), lambda p: printer_up(p, p.fit_up()), lambda p: printer_right(p, p.fit_right()), lambda p: printer_down(p, p.fit_down())]:
+        for fit  in [lambda p: printer_left(p, p.fit(Edge.LEFT)), lambda p: printer_up(p, p.fit(Edge.UP)), lambda p: printer_right(p, p.fit(Edge.RIGHT)), lambda p: printer_down(p, p.fit(Edge.DOWN))]:
             self.run_piece(fit, self.first_piece)
        
     def run_piece(self, fit, piece: PieceKeyFitterPice|None):

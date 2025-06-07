@@ -4,7 +4,7 @@ from base_piece import BasePiece
 
 class BasePieceGenerator:
 
-    def __init__(self, width:int , height:int) -> None:
+    def __init__(self, width: int , height: int) -> None:
         self.width = width
         self.height = height
 

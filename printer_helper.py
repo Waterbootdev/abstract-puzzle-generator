@@ -3,17 +3,17 @@ from edge import Edge
 from escape_color import EscapeColor
 from time import sleep
 
-TOPLEFT ="\033[%d;%dH" %(1,1)
+TOPLEFT: str ="\033[%d;%dH" %(1,1)
 
-def print_edge(piece:PieceKeyPiece, index: Edge):
+def print_edge(piece: PieceKeyPiece, index: Edge):
     print(piece.part_positions[index]+piece.piece_key[index])
     print(TOPLEFT+' ')
 
 
-def print_at(position, color:EscapeColor, part):
+def print_at(position, color: EscapeColor, part):
     print(position + color.value + part)
         
-def print_animated(seconds:float, piece:PieceKeyFitterPice, not_fitted:bool, part:str, index: int, red:EscapeColor = EscapeColor.RED, yellow: EscapeColor = EscapeColor.YELLOW, green :EscapeColor = EscapeColor.GREEN):
+def print_animated(seconds: float, piece: PieceKeyFitterPice, not_fitted: bool, part: str, index: int, red: EscapeColor = EscapeColor.RED, yellow: EscapeColor = EscapeColor.YELLOW, green: EscapeColor = EscapeColor.GREEN):
         
     initial_part = part
     final_color = green

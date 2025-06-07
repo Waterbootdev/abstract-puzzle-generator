@@ -1,3 +1,5 @@
+from typing import Tuple
+
 class NormalVector:
     def __init__(self, x: int = 0, y: int = 0) -> None:
 
@@ -30,9 +32,9 @@ class NormalVector:
             self.y = self.x
             self.x = 0
 
-    def add_to(self, x :int , y:int)-> tuple[int, int]:
+    def add_to(self, x: int , y: int)-> Tuple[int, int]:
         return x + self.x, y + self.y
 
-    def subtract_from(self, x :int , y:int)-> tuple[int, int]:
+    def subtract_from(self, x: int , y: int)-> Tuple[int, int]:
         return x - self.x, y - self.y
         

@@ -1,15 +1,15 @@
-from base_piece import BasePiece
+from base_piece import List, BasePiece
 from itertools import starmap
 
-def get_link(base_pieces:list[BasePiece], index):
+def get_link(base_pieces: List[BasePiece], index):
         return base_pieces[index] if index else None
     
-def set_links(base_pieces:list[BasePiece], piece:list, indexes:list):
+def set_links(base_pieces: List[BasePiece], piece_links: List, indexes: List):
         for i, index in enumerate(indexes):
-            piece[i] = get_link(base_pieces, index)
+            piece_links[i] = get_link(base_pieces, index)
 
 
-def link(base_pieces:list[BasePiece], piece : BasePiece, links, forward, backward):
+def link(base_pieces: List[BasePiece], piece : BasePiece, links, forward, backward):
         set_links(base_pieces, piece.links, links)
         piece.forward = get_link(base_pieces, forward)
         piece.backward = get_link(base_pieces, backward)

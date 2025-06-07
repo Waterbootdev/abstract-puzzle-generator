@@ -1,8 +1,10 @@
-def cast_number(type, number_str:str, default, minimum):
+def cast_number(type, number_str: str, default, minimum):
     try:
-        return max(minimum, type(number_str))
+        value = max(minimum, type(number_str))
     except Exception:
         return default
+    else:
+        return value
 
 
 def get_from_argvs(current_args, max_width = 40, max_height = 15, sleep_time = 1.0):

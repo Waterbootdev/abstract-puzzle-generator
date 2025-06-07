@@ -1,17 +1,17 @@
-from piece_key_fitter_piece import PieceKeyFitterPice, PIECE_KEYS, Directions, Coordinate
+from piece_key_fitter_piece import List, PieceKeyFitterPice, PIECE_KEYS, Directions, Coordinate
 from base_pice_generator import BasePieceGenerator
 import random
 
 class RandomBasePieceKeyFitter:
     
-    def __init__(self, number_columns, number_rows) -> None:
+    def __init__(self, number_columns: int, number_rows: int) -> None:
         
         if number_rows > number_columns or number_columns < 1:
             raise ValueError() 
        
-        base_piece_generator :BasePieceGenerator = BasePieceGenerator(number_columns + 2, number_rows + 2)
+        base_piece_generator: BasePieceGenerator = BasePieceGenerator(number_columns + 2, number_rows + 2)
     
-        def new_piece(frame_index:int, rotation_index:int, rotated:bool, directions:list[Directions], coordinate:Coordinate):
+        def new_piece(frame_index: int, rotation_index: int, rotated: bool, directions: List[Directions], coordinate: Coordinate) -> PieceKeyFitterPice:
             piece_key = PIECE_KEYS[0]
             if frame_index > 0:
                 piece_key = random.choice(PIECE_KEYS)
@@ -36,7 +36,7 @@ class RandomBasePieceKeyFitter:
         for fit  in [lambda p: printer_left(p, p.fit_left()), lambda p: printer_up(p, p.fit_up()), lambda p: printer_right(p, p.fit_right()), lambda p: printer_down(p, p.fit_down())]:
             self.run_piece(fit, self.first_piece)
        
-    def run_piece(self, fit, piece):
+    def run_piece(self, fit, piece: PieceKeyFitterPice|None):
         while piece:
             assert isinstance(piece, PieceKeyFitterPice)
             fit(piece)

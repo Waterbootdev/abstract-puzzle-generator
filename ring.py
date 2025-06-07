@@ -1,4 +1,4 @@
-from typing import TypeVar, Generic
+from typing import TypeVar, Generic, List
 
 T = TypeVar("T")
 
@@ -6,13 +6,13 @@ class Ring(Generic[T]):
 
     class RingNode:
     
-        def __init__(self, index,  data:list[T]) -> None:    
+        def __init__(self, index: int,  data: List[T]) -> None:    
             self.forward = self
             self.backward = self
             self.index = index
             self.data = data[index]
 
-        def increment(self, data:list[T]):
+        def increment(self, data: List[T]):
             if self.forward == self or self.backward == self:
                 raise Exception()
             node = Ring.RingNode(self.index + 1, data)
@@ -22,7 +22,7 @@ class Ring(Generic[T]):
             return node
 
         @staticmethod
-        def twice(data:list[T]):
+        def twice(data: List[T]):
             first = Ring.RingNode(0, data)
             second = Ring.RingNode(1, data)
 
@@ -34,8 +34,7 @@ class Ring(Generic[T]):
 
             return [first, second], second   
 
-
-    def __init__(self, data:list[T]) -> None:
+    def __init__(self, data: List[T]) -> None:
         self.__data = data
         self.length = len(data)
         
@@ -67,7 +66,7 @@ class Ring(Generic[T]):
     def current(self) -> T:
         return self.current_node.data
     
-    def at_index(self, index:int) -> T:
+    def at_index(self, index: int) -> T:
         return self.__data[index]
     
     def curent_index(self):
@@ -75,6 +74,7 @@ class Ring(Generic[T]):
     
     def backward_index(self):
         return self.current_node.backward.index
+    
     def forward_index(self):
         return self.current_node.forward.index
     

@@ -1,6 +1,7 @@
 from edge import Edge
+from typing import List
 
-def generation_rotation_matrix():
+def generation_rotation_matrix() -> List[List[List[Edge]]]:
         
     identity = [Edge.LEFT, Edge.UP, Edge.RIGHT, Edge.DOWN]
     rotations =[identity[rotation_index:] + identity[:rotation_index]  for rotation_index in range(Edge.MAX)]
@@ -13,7 +14,7 @@ def generation_rotation_matrix():
             rotation_matrix[first][second]= rotations[rotation_index]
     return rotation_matrix 
 
-INDEX_ROTATION_MATRIX = generation_rotation_matrix()
+INDEX_ROTATION_MATRIX: List[List[List[Edge]]] = generation_rotation_matrix()
     
 
        

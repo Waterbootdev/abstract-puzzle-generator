@@ -1,7 +1,8 @@
 from normal_vector import NormalVector
-from ring import Ring
+from ring import List, Ring
 from copy import deepcopy
 from itertools import chain
+
 class Directions:
     def __init__(self) -> None:
         
@@ -52,7 +53,7 @@ def directions_list():
     return directions
 
     
-def directions_list_list(directions_list :list[Directions]) -> list[list[Directions]]:
+def directions_list_list(directions_list: List[Directions]) -> List[List[Directions]]:
     number_direction = len(directions_list)
 
     ring = Ring(directions_list)

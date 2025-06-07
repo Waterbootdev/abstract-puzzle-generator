@@ -1,7 +1,8 @@
 from coordinate import Coordinate
-from directions import Directions 
+from directions import List, Directions
+
 class BasePiece:
-    def __init__(self, frame_index:int, rotation_index:int, rotated:bool, directions:list[Directions], coordinate:Coordinate) -> None:
+    def __init__(self, frame_index: int, rotation_index: int, rotated: bool, directions: List[Directions], coordinate: Coordinate) -> None:
         self.frame_index = frame_index
         self.rotation_index = rotation_index
         self.rotated = rotated

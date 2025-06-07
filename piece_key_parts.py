@@ -1,6 +1,6 @@
 from piece_key_constants import PIECE_KEY_BASE, PIECE_KEY_NUMBER_DIGITS, MAX_NUMBER_PIECE_KEYS, PIECE_KEY_DIGITS
 
-def int_to_significant(value:int)->str:
+def int_to_significant(value: int) -> str:
     if value < 0 or value >= MAX_NUMBER_PIECE_KEYS:
         raise ValueError()
     
@@ -15,7 +15,7 @@ def int_to_significant(value:int)->str:
 
     return ''.join(reversed(digits))
     
-def pad_zeros(significant:str):
+def pad_zeros(significant: str) -> str:
 
     if len(significant) > PIECE_KEY_NUMBER_DIGITS:
         raise ValueError()

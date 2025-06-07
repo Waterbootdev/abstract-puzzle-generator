@@ -2,9 +2,10 @@ from itertools import chain
 from copy import copy
 from directions import Ring, DIRECTIONSLISTLIST, Directions
 from coordinate import Coordinate
-from spiral__helper import generate_coordinates, incremented_coordinate, generate_links, decrement_coordinates
+from spiral__helper import List, generate_coordinates, incremented_coordinate, generate_links, decrement_coordinates
+from typing import Tuple
 
-def generate_rotated(width, height, length):
+def generate_rotated(width: int, height: int, length: int) -> List[bool]:
    
     right = width
     down = height - 1
@@ -39,7 +40,7 @@ def generate_rotated(width, height, length):
     assert length == width * height
     return rotated    
 
-def generate_frame_index(rotated:list[bool]):
+def generate_frame_index(rotated: List[bool]) -> Tuple[List[int], List[int]]:
     frame_index = 0
     rotation_index = 0
     frame_indexes = []
@@ -61,7 +62,7 @@ def generate_frame_index(rotated:list[bool]):
 
     return frame_indexes, rotation_indexes 
 
-def generate_directions(rotated:list[bool]) -> list[list[Directions]]:
+def generate_directions(rotated: List[bool]) -> List[List[Directions]]:
     ring = Ring(DIRECTIONSLISTLIST)
    
     def generate(step_rotate):
@@ -72,7 +73,7 @@ def generate_directions(rotated:list[bool]) -> list[list[Directions]]:
 
     return list(map(generate, rotated))
  
-def generate_coordinates_and_links(width, height, rotated:list[bool],  directions:list[list[Directions]]) -> tuple[list[Coordinate], list[list[int|None]]]:
+def generate_coordinates_and_links(width: int, height: int, rotated: List[bool],  directions: List[List[Directions]]) -> Tuple[List[Coordinate], List[List[int|None]]]:
 
     coordinates = generate_coordinates(incremented_coordinate(), rotated, directions)
 
@@ -80,10 +81,10 @@ def generate_coordinates_and_links(width, height, rotated:list[bool],  direction
 
     return decrement_coordinates(coordinates), generated_links
 
-def generate_forward(length):
+def generate_forward(length: int) -> List[int|None]:
     last = length - 1
     return[None if i == last else i + 1 for i in range(length)]
 
-def generate_backward(length):
+def generate_backward(length: int) -> List[int|None]:
     return[None if i == 0 else i - 1 for i in range(length)]
 

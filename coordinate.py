@@ -18,55 +18,57 @@ class Coordinate:
         self.x -= 1
         self.y -= 1
 
-    def right(self, directions:Directions):
+    def right(self, directions: Directions):
         return directions.x.add_to(self.x, self.y)
     
-    def left(self, directions:Directions):
+    def left(self, directions: Directions):
         return directions.x.subtract_from(self.x, self.y)
     
-    def up(self, directions:Directions):
+    def up(self, directions: Directions):
         return directions.y.subtract_from(self.x, self.y)
     
-    def down(self, directions:Directions):
+    def down(self, directions: Directions):
         return directions.y.add_to(self.x, self.y)
 
-    def matix_left(self, matrix, directions:Directions):
+    def matix_left(self, matrix, directions: Directions):
         x, y = self.left(directions)
         return matrix[x][y]
     
-    def matix_up(self, matrix, directions:Directions):
+    def matix_up(self, matrix, directions: Directions):
         x, y = self.up(directions)
         return matrix[x][y]
 
-    def matix_right(self, matrix, directions:Directions):
+    def matix_right(self, matrix, directions: Directions):
         x, y = self.right(directions)
         return matrix[x][y]
-    def matix_down(self, matrix, directions:Directions):
+    
+    def matix_down(self, matrix, directions: Directions):
         x, y = self.down(directions)
         return matrix[x][y]
     
     def set_to_matrix(self, matrix) -> None:
         matrix[self.x][self.y]= self.index
+    
     def get_from_matrix(self, matrix):
         return matrix[self.x][self.y]
         
-    def step_right(self, directions:Directions):
+    def step_right(self, directions: Directions):
         self.index += 1
         self.x, self.y = self.right(directions)
     
-    def step_down(self, directions:Directions):
+    def step_down(self, directions: Directions):
         self.index += 1
         self.x, self.y = self.down(directions)
     
-    def step_left(self, directions:Directions):
+    def step_left(self, directions: Directions):
         self.index -= 1
         self.x, self.y = self.left(directions)
     
-    def step_right_down(self, directions:Directions):
+    def step_right_down(self, directions: Directions):
         self.x, self.y = self.right(directions)
         self.x, self.y = self.down(directions)
 
-    def scale_add(self, scale_factor_x: int, scale_factor_y: int, x:int, y:int):
+    def scale_add(self, scale_factor_x: int, scale_factor_y: int, x: int, y: int):
         coordinate = Coordinate()
         coordinate.index = self.index
         coordinate.x = scale_factor_x * self.x + x

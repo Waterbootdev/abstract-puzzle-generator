@@ -41,6 +41,8 @@ class RandomBasePieceKeyFitter:
             assert isinstance(piece, PieceKeyFitterPice)
             fit(piece)
             piece = piece.forward
+
+
     
     
 

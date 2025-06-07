@@ -5,6 +5,7 @@ from argv_helper import get_from_argvs
 from edge import Edge
 from random_piece_key_fitter import RandomBasePieceKeyFitter
 from piece_key_piece_printer import PieceKeyFitterPicePrinter, EscapeColor
+from piece_key_piece_helper import print_key_groups_counts 
 import sys
 
 def main():
@@ -34,5 +35,10 @@ def main():
 
         time.sleep(2)
 
+        os.system("clear")
+
+        _ = print_key_groups_counts(fitter.pieces)
+
+        time.sleep(2)
     
 main()

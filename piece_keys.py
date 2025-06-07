@@ -20,4 +20,4 @@ PIECE_KEY_LISTS: Dict[str, List[str]] = {key: [a for a in key] for key in PIECE_
 PIECE_KEYS_IDENTITY: Dict[str, str] = {key: key for key in PIECE_KEYS}
 
 if __name__ == '__main__':
-    print(PIECE_KEYS)
+    pass

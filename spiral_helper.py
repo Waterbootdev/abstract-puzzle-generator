@@ -15,7 +15,7 @@ def generate_rotated(width: int, height: int, length: int) -> List[bool]:
     step_counts = []
 
     if height == 2:
-        step_counts = [right,down, left] 
+        step_counts = [right, down, left] 
     else:
         frame = [right, down, left, up]
     
@@ -63,7 +63,7 @@ def generate_frame_index(rotated: List[bool]) -> Tuple[List[int], List[int]]:
     return frame_indexes, rotation_indexes 
 
 def generate_directions(rotated: List[bool]) -> List[List[Directions]]:
-    ring = Ring(DIRECTIONSLISTLIST)
+    ring = Ring[List[Directions]](DIRECTIONSLISTLIST)
    
     def generate(step_rotate):
         current = ring.current()

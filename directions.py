@@ -56,7 +56,7 @@ def directions_list():
 def directions_list_list(directions_list: List[Directions]) -> List[List[Directions]]:
     number_direction = len(directions_list)
 
-    ring = Ring(directions_list)
+    ring = Ring[Directions](directions_list)
 
     ring_list = [[] for _ in range(number_direction)]
 

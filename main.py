@@ -5,7 +5,8 @@ from argv_helper import get_from_argvs
 from edge import Edge
 from random_piece_key_fitter import RandomBasePieceKeyFitter
 from piece_key_piece_printer import PieceKeyFitterPicePrinter, EscapeColor
-from piece_key_piece_helper import print_key_groups_counts 
+from piece_key_piece_helper import print_key_groups_counts
+from piece_key_piece_print_positions import print_row_position  
 import sys
 
 def main():
@@ -13,6 +14,11 @@ def main():
     current_argv = sys.argv
 
     max_width, max_height, sleep_time = get_from_argvs(current_argv)
+
+    scale_x = 6
+    scale_y = 4
+    x = 2
+    y = 1
 
     while True:
 
@@ -24,18 +30,21 @@ def main():
 
         fitter = RandomBasePieceKeyFitter(w, h)
     
-        printer : PieceKeyFitterPicePrinter = PieceKeyFitterPicePrinter(fitter.spiral, 6, 4, 2, 1, sleep_time)  
+        printer : PieceKeyFitterPicePrinter = PieceKeyFitterPicePrinter(fitter.spiral, scale_x, scale_y, x, y, sleep_time)  
         
         printer.print_pieces(Edge.LEFT, EscapeColor.BLUE)      
         printer.print_pieces(Edge.RIGHT, EscapeColor.BLUE)      
         printer.print_pieces(Edge.UP, EscapeColor.BLUE)      
         printer.print_pieces(Edge.DOWN, EscapeColor.BLUE)      
 
-        fitter.fit_all_pices(printer.get_printer(Edge.LEFT),printer.get_printer(Edge.UP),printer.get_printer(Edge.RIGHT),printer.get_printer(Edge.DOWN))
+        fitter.fit_and_print_all(printer.get_printer(Edge.LEFT))
+        fitter.fit_and_print_all(printer.get_printer(Edge.UP))
+        fitter.fit_and_print_all(printer.get_printer(Edge.RIGHT))
+        fitter.fit_and_print_all(printer.get_printer(Edge.DOWN))
 
-        time.sleep(2)
+        print_row_position(fitter.bottom_left(), Edge.UP, scale_x, scale_y, x, y)
 
-        os.system("clear")
+        print()
 
         _ = print_key_groups_counts(fitter.pieces)
 

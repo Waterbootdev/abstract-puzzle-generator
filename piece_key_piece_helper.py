@@ -10,6 +10,7 @@ def piece_key_groups_counts(pieces: List[PieceKeyPiece]) -> Dict[str, Dict[str, 
     return {first_key: {key : counts[key] for key in keys[1]} for first_key, keys in PIECE_KEYS_ROTATIONS.items()}
 
 def print_key_groups_counts(pieces: List[PieceKeyPiece]) -> Dict[str, Dict[str, int]]:
+    print()
     counts = piece_key_groups_counts(pieces)
     for group in counts.values():
         f = dict(filter(lambda t: t[1]> 0, group.items()))
@@ -17,4 +18,7 @@ def print_key_groups_counts(pieces: List[PieceKeyPiece]) -> Dict[str, Dict[str, 
         if count:
             print('{}\t{}'.format(count ,f))
     return counts
+
+
+
 

@@ -1,23 +1,17 @@
-from base_piece import List, BasePiece
+from base_piece import List, Coordinate, Directions, Piece
 from itertools import starmap
+from collections.abc import Callable
 
-def get_link(base_pieces: List[BasePiece], index):
+def get_link(base_pieces: List[Piece], index: int|None) -> Piece|None:
         return base_pieces[index] if index else None
-    
-def set_links(base_pieces: List[BasePiece], piece_links: List, indexes: List):
-        for i, index in enumerate(indexes):
-            piece_links[i] = get_link(base_pieces, index)
 
-
-def link(base_pieces: List[BasePiece], piece : BasePiece, links, forward, backward):
-        set_links(base_pieces, piece.links, links)
+def link(base_pieces: List[Piece], piece : Piece, links: List[int|None], forward: int|None, backward: int|None):
+        for i, index in enumerate(links):
+            piece.links[i] = get_link(base_pieces, index)
         piece.forward = get_link(base_pieces, forward)
         piece.backward = get_link(base_pieces, backward)
 
-
-def generate_linked_base_pieces(get_new_base_piece, frame_index, rotation_index, rotated, directions, coordinates, links, forward, backward):
+def generate_linked_base_pieces(get_new_base_piece: Callable[[int, int, bool, List[Directions], Coordinate], Piece] , frame_index: List[int], rotation_index: List[int], rotated: List[bool], directions: List[List[Directions]], coordinates: List[Coordinate], links: List[List[int|None]], forward: List[int|None], backward: List[int|None]) -> List[Piece]:
         base_pieces = list(starmap(get_new_base_piece, zip(frame_index, rotation_index, rotated, directions, coordinates)))
         list(starmap(lambda base_piece, links, forward, backward: link(base_pieces, base_piece, links, forward, backward), zip(base_pieces, links, forward, backward)))
         return base_pieces
- 
-

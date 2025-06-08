@@ -1,6 +1,7 @@
 from base_piece import List, BasePiece, Directions, Coordinate
 from rotation_matrix import INDEX_ROTATION_MATRIX
 from piece_keys import PIECE_KEYS_IDENTITY
+
 class PieceKeyPiece(BasePiece):
     def __init__(self, piece_key: str, opposite_key: str, frame_index: int, rotation_index: int, rotated: bool, directions: List[Directions], coordinate: Coordinate) -> None:
         super().__init__(frame_index, rotation_index, rotated, directions, coordinate)

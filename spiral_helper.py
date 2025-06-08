@@ -45,7 +45,7 @@ def generate_frame_index(rotated: List[bool]) -> Tuple[List[int], List[int]]:
     rotation_index = 0
     frame_indexes = []
     rotation_indexes = []
-    
+
     for rotate in rotated:
         current_frame_index = frame_index
         current_rotation_index = rotation_index
@@ -87,4 +87,11 @@ def generate_forward(length: int) -> List[int|None]:
 
 def generate_backward(length: int) -> List[int|None]:
     return[None if i == 0 else i - 1 for i in range(length)]
+
+def generate_turns(rotated: List[bool]) -> List[int]:
+    turns = []
+    for index, rotate in enumerate(rotated):
+        if rotate:
+            turns.append(index)
+    return turns
 

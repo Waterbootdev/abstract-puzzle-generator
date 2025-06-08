@@ -15,9 +15,9 @@ def main():
 
     max_width, max_height, sleep_time = get_from_argvs(current_argv)
 
-    scale_x = 6
+    scale_x = 4
     scale_y = 4
-    x = 2
+    x = 1
     y = 1
 
     while True:
@@ -37,10 +37,13 @@ def main():
         printer.print_pieces(Edge.UP, EscapeColor.BLUE)      
         printer.print_pieces(Edge.DOWN, EscapeColor.BLUE)      
 
-        fitter.fit_and_print_all(printer.get_printer(Edge.LEFT))
-        fitter.fit_and_print_all(printer.get_printer(Edge.UP))
-        fitter.fit_and_print_all(printer.get_printer(Edge.RIGHT))
-        fitter.fit_and_print_all(printer.get_printer(Edge.DOWN))
+        if random.choice([False]):
+            fitter.first_fit_and_print_all(printer.get_printer(Edge.LEFT))
+            fitter.first_fit_and_print_all(printer.get_printer(Edge.UP))
+            fitter.first_fit_and_print_all(printer.get_printer(Edge.RIGHT))
+            fitter.first_fit_and_print_all(printer.get_printer(Edge.DOWN))
+        else:
+            fitter.second_fit_and_print_all(printer.edge_printer)
 
         print_row_position(fitter.bottom_left(), Edge.UP, scale_x, scale_y, x, y)
 

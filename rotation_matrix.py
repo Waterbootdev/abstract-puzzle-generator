@@ -1,9 +1,9 @@
-from edge import Edge, NUMBER_EDGES
+from edge import Edge, NUMBER_EDGES, LEFT_UP_RIGHT_DOWN
 from typing import List
 
 def generation_rotation_matrix() -> List[List[List[Edge]]]:
         
-    identity = [Edge.LEFT, Edge.UP, Edge.RIGHT, Edge.DOWN]
+    identity = LEFT_UP_RIGHT_DOWN
     rotations =[identity[rotation_index:] + identity[:rotation_index]  for rotation_index in range(NUMBER_EDGES)]
     rotation_matrix = [[[] for _ in range(NUMBER_EDGES)] for _ in range(NUMBER_EDGES)]
     for first in range(NUMBER_EDGES):

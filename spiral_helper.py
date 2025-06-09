@@ -4,6 +4,7 @@ from directions import Ring, DIRECTIONSLISTLIST, Directions
 from coordinate import Coordinate
 from spiral__helper import List, generate_coordinates, incremented_coordinate, generate_links, decrement_coordinates
 from typing import Tuple
+from edge import Edge, LEFT_UP, LEFT_UP_RIGHT, LEFT_UP_DOWN, LEFT_UP_RIGHT_DOWN
 
 def generate_rotated(width: int, height: int, length: int) -> List[bool]:
    
@@ -95,3 +96,16 @@ def generate_turns(rotated: List[bool]) -> List[int]:
             turns.append(index)
     return turns
 
+def generate_edges(length: int, turns: List[int]) -> List[List[Edge]]:
+
+    edges: List[List[Edge]] = [LEFT_UP for _ in range(length)]
+
+    for index in turns:
+        edges[index] = LEFT_UP_RIGHT
+
+    for index in range(turns[-1] + 1, length - 1):
+        edges[index] = LEFT_UP_DOWN
+
+    edges[-1] = LEFT_UP_RIGHT_DOWN 
+
+    return edges

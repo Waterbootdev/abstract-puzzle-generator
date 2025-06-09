@@ -1,16 +1,15 @@
 
-from piece_key_piece import PieceKeyPiece, Directions, Coordinate
+from piece_key_piece import PieceKeyPiece, Directions, Coordinate, Callable
 from edge import Edge, OPPOSITE_EDGE
-from piece_keys import PIECE_KEYS, PIECE_KEY_LISTS, PIECE_KEYS_IDENTITY
+from piece_keys import PIECE_KEYS, PIECE_KEYS_IDENTITY
 from typing import List, Tuple
 
 class PieceKeyFitterPice(PieceKeyPiece):
     
     OPPOSITEKEYS = {key: PIECE_KEYS_IDENTITY[''.join([{'0':'0', '1':'2', '2':'1'}[p] for p in key])] for key in  PIECE_KEYS}
     
-    def __init__(self, piece_key: str , frame_index: int, rotation_index: int, rotated: bool, directions: List[Directions], coordinate: Coordinate) -> None:
-        super().__init__(piece_key, PieceKeyFitterPice.OPPOSITEKEYS[piece_key], frame_index, rotation_index, rotated, directions, coordinate)
-        self.inital_piece_key =  PIECE_KEY_LISTS[piece_key]
+    def __init__(self, piece_key: str, print_positions: Callable[[Coordinate, List[Directions]], List[str]], frame_index: int, rotation_index: int, rotated: bool, directions: List[Directions], coordinate: Coordinate, edges: List[Edge]) -> None:
+        super().__init__(piece_key, PieceKeyFitterPice.OPPOSITEKEYS[piece_key], print_positions, frame_index, rotation_index, rotated, directions, coordinate, edges)
     
     def fit(self, this: Edge) -> Tuple[bool, str]:
         opposite_link = self.links[this]
@@ -27,4 +26,6 @@ class PieceKeyFitterPice(PieceKeyPiece):
             self.opposite_key = PieceKeyFitterPice.OPPOSITEKEYS[piece_key]
             return True, fit_part
         return False, fit_part
-       
+    
+    def fit_edges(self) -> List[Tuple[bool, str]]:
+        return list(map(self.fit, self.edges))

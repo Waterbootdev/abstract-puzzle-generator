@@ -1,4 +1,5 @@
 from base_piece import List, Coordinate, Directions, Piece
+from edge import Edge
 from itertools import starmap
 from collections.abc import Callable
 
@@ -11,7 +12,7 @@ def link(base_pieces: List[Piece], piece : Piece, links: List[int|None], forward
         piece.forward = get_link(base_pieces, forward)
         piece.backward = get_link(base_pieces, backward)
 
-def generate_linked_base_pieces(get_new_base_piece: Callable[[int, int, bool, List[Directions], Coordinate], Piece] , frame_index: List[int], rotation_index: List[int], rotated: List[bool], directions: List[List[Directions]], coordinates: List[Coordinate], links: List[List[int|None]], forward: List[int|None], backward: List[int|None]) -> List[Piece]:
-        base_pieces = list(starmap(get_new_base_piece, zip(frame_index, rotation_index, rotated, directions, coordinates)))
+def generate_linked_base_pieces(get_new_base_piece: Callable[[int, int, bool, List[Directions], Coordinate, List[Edge]], Piece] , frame_index: List[int], rotation_index: List[int], rotated: List[bool], directions: List[List[Directions]], coordinates: List[Coordinate], edges: List[List[Edge]], links: List[List[int|None]], forward: List[int|None], backward: List[int|None]) -> List[Piece]:
+        base_pieces = list(starmap(get_new_base_piece, zip(frame_index, rotation_index, rotated, directions, coordinates, edges)))
         list(starmap(lambda base_piece, links, forward, backward: link(base_pieces, base_piece, links, forward, backward), zip(base_pieces, links, forward, backward)))
         return base_pieces

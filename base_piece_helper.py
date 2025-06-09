@@ -2,7 +2,6 @@ from base_piece import List, Coordinate, Directions, Piece
 from edge import Edge
 from itertools import starmap
 from collections.abc import Callable
-
 def get_link(base_pieces: List[Piece], index: int|None) -> Piece|None:
         return base_pieces[index] if index else None
 

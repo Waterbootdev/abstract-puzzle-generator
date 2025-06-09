@@ -8,6 +8,7 @@ from piece_key_piece_printer import PieceKeyFitterPicePrinter, EscapeColor
 from piece_key_piece_helper import print_key_groups_counts
 from piece_key_piece_print_positions import print_row_position  
 from print_positions import PrintPositions
+from opposite_piece_keys import OPPOSITE_PIECE_KEY_DIGITS, DEFAULT_OPPOSITE_KEY
 import sys
 
 def main():
@@ -29,35 +30,27 @@ def main():
 
         h = random.choice(range(min(w, max_height))) + 1
 
-        fitter = RandomBasePieceKeyFitter(w, h, PrintPositions(scale_x, scale_y, x, y).print_positions)
+        opposite_key = DEFAULT_OPPOSITE_KEY
+
+        fitter = RandomBasePieceKeyFitter(w, h, PrintPositions(scale_x, scale_y, x, y).print_positions, opposite_key)
     
         printer : PieceKeyFitterPicePrinter = PieceKeyFitterPicePrinter(sleep_time)  
         
-        printer.print_pieces(fitter.spiral, Edge.LEFT, EscapeColor.BLUE)      
-        printer.print_pieces(fitter.spiral, Edge.RIGHT, EscapeColor.BLUE)      
-        printer.print_pieces(fitter.spiral, Edge.UP, EscapeColor.BLUE)      
-        printer.print_pieces(fitter.spiral, Edge.DOWN, EscapeColor.BLUE)      
+        printer.print_pieces(fitter.pieces, Edge.LEFT, EscapeColor.BLUE)      
+        printer.print_pieces(fitter.pieces, Edge.RIGHT, EscapeColor.BLUE)      
+        printer.print_pieces(fitter.pieces, Edge.UP, EscapeColor.BLUE)      
+        printer.print_pieces(fitter.pieces, Edge.DOWN, EscapeColor.BLUE)      
 
-        match random.choice(range(3)):
-            case 0:
-                fitter.fit_and_print_all(printer.print)
-            case 1:
-                fitter.first_fit_and_print_all(printer.get_printer(Edge.LEFT))
-                fitter.first_fit_and_print_all(printer.get_printer(Edge.UP))
-                fitter.first_fit_and_print_all(printer.get_printer(Edge.RIGHT))
-                fitter.first_fit_and_print_all(printer.get_printer(Edge.DOWN))
-            case 2:
-                fitter.fit_all()
-                printer.print_pieces(fitter.pieces, Edge.LEFT, EscapeColor.MAGENTA)      
-                printer.print_pieces(fitter.pieces, Edge.RIGHT, EscapeColor.MAGENTA)      
-                printer.print_pieces(fitter.pieces, Edge.UP, EscapeColor.MAGENTA)      
-                printer.print_pieces(fitter.pieces, Edge.DOWN, EscapeColor.MAGENTA)      
-         
-          
+        time.sleep(1)
+
+        fitter.fit_and_print_all(printer.print)
+
         print_row_position(fitter.bottom_left(), Edge.UP, scale_x, scale_y, x, y)
 
         print()
 
+        print(f'{w} : {h} : {OPPOSITE_PIECE_KEY_DIGITS[opposite_key]}')
+       
         _ = print_key_groups_counts(fitter.pieces)
 
         time.sleep(4)

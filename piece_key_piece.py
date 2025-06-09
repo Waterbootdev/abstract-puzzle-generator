@@ -2,13 +2,13 @@ from base_piece import List, BasePiece, Directions, Coordinate, Edge
 from rotation_matrix import INDEX_ROTATION_MATRIX
 from piece_keys import PIECE_KEYS_IDENTITY
 from collections.abc import Callable
-
+from opposite_piece_keys import OPPOSITE_PIECE_KEYS
 class PieceKeyPiece(BasePiece):
     def __init__(self, piece_key: str, opposite_key: str, print_positions: Callable[[Coordinate, List[Directions]], List[str]], frame_index: int, rotation_index: int, rotated: bool, directions: List[Directions], coordinate: Coordinate, edges: List[Edge]) -> None:
         super().__init__(frame_index, rotation_index, rotated, directions, coordinate, edges)
-     
+        self.opposite_piece_keys = OPPOSITE_PIECE_KEYS[opposite_key]
         self.piece_key = piece_key
-        self.opposite_key = opposite_key
+        self.opposite_piece_key = self.opposite_piece_keys[piece_key]
         rotation_matrix = INDEX_ROTATION_MATRIX[rotation_index]
         self.rotation_matrix = rotation_matrix
         self.rotation = rotation_matrix[0]
@@ -23,4 +23,8 @@ class PieceKeyPiece(BasePiece):
         return [self.piece_key[i] for i in self.rotation]
        
     def get_opposite_key_part(self, rotation_index: int, piece_key_index: int) -> str:
-        return self.opposite_key[self.rotation_matrix[rotation_index][piece_key_index]]
+        return self.opposite_piece_key[self.rotation_matrix[rotation_index][piece_key_index]]
+    
+    def set_piece_key(self, piece_key: str) -> None:
+        self.piece_key = PIECE_KEYS_IDENTITY[piece_key]
+        self.opposite_piece_key = self.opposite_piece_keys[piece_key] 

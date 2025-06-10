@@ -3,7 +3,7 @@ from piece_key_fitter_piece import List, PieceKeyFitterPice, Directions, Coordin
 from piece_generator import PieceGenerator, Callable
 import random
 
-class RandomBasePieceKeyFitter:
+class RandomPieceKeyFitter:
     
     def __init__(self, number_columns: int, number_rows: int, print_positions: Callable[[Coordinate, List[Directions]], List[str]], opposite_key: str) -> None:
         

@@ -12,4 +12,9 @@ DEFAULT_OPPOSITE_KEY: str = '021'
 
 
 if __name__ == '__main__':
-    print(OPPOSITE_PIECE_KEYS[DEFAULT_OPPOSITE_KEY]) 
+    assert DEFAULT_OPPOSITE_KEY in OPPOSITE_KEYS
+    assert OPPOSITE_PIECE_KEY_DIGITS[DEFAULT_OPPOSITE_KEY] == {'0': '0', '1': '2', '2': '1'}
+
+    
+
+    

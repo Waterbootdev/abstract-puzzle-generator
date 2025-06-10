@@ -7,7 +7,8 @@ def piece_keys_counts(piece_keys: List[str]) -> Dict[str, int]:
     return counts
 
 if __name__ == '__main__':
-    print(len(piece_keys_counts(PIECE_KEYS)) == len(PIECE_KEYS))
-    print(set(piece_keys_counts(PIECE_KEYS).keys())==set(PIECE_KEYS))
-    print(set(piece_keys_counts(PIECE_KEYS).values())=={1}) 
-    print(set(piece_keys_counts(PIECE_KEYS+PIECE_KEYS).values())=={2})
+    assert len(piece_keys_counts(PIECE_KEYS)) == len(PIECE_KEYS)
+    assert set(piece_keys_counts(PIECE_KEYS).keys())==set(PIECE_KEYS)
+    assert set(piece_keys_counts(PIECE_KEYS).values())=={1} 
+    assert set(piece_keys_counts(PIECE_KEYS+PIECE_KEYS).values())=={2}
+    

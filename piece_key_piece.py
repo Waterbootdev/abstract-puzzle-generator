@@ -3,6 +3,7 @@ from rotation_matrix import INDEX_ROTATION_MATRIX
 from piece_keys import PIECE_KEYS_IDENTITY
 from collections.abc import Callable
 from opposite_piece_keys import OPPOSITE_PIECE_KEYS
+
 class PieceKeyPiece(BasePiece):
     def __init__(self, piece_key: str, opposite_key: str, print_positions: Callable[[Coordinate, List[Directions]], List[str]], frame_index: int, rotation_index: int, rotated: bool, directions: List[Directions], coordinate: Coordinate, edges: List[Edge]) -> None:
         super().__init__(frame_index, rotation_index, rotated, directions, coordinate, edges)

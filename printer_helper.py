@@ -7,8 +7,6 @@ TOPLEFT: str ="\033[%d;%dH" %(1,1)
 
 def print_edge(piece: PieceKeyPiece, index: Edge):
     print(piece.print_positions[index]+piece.piece_key[index])
-    #print(TOPLEFT+' ')
-
 
 def print_at(position, color: EscapeColor, part):
     print(position + color.value + part)
@@ -29,4 +27,4 @@ def print_animated(seconds: float, piece: PieceKeyPiece, not_fitted: bool, part:
     sleep(seconds)
 
     print_at(position, final_color, part)
-
+    

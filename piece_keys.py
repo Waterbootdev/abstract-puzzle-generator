@@ -20,4 +20,6 @@ PIECE_KEY_LISTS: Dict[str, List[str]] = {key: [a for a in key] for key in PIECE_
 PIECE_KEYS_IDENTITY: Dict[str, str] = {key: key for key in PIECE_KEYS}
 
 if __name__ == '__main__':
-    pass
+    assert len(set(PIECE_KEYS)) == MAX_NUMBER_PIECE_KEYS
+    assert len(PIECE_KEYS) == MAX_NUMBER_PIECE_KEYS
+    

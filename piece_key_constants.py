@@ -6,5 +6,8 @@ MAX_NUMBER_PIECE_KEYS = int(MAX_PIECE_KEY, base=PIECE_KEY_BASE) + 1
 PIECE_KEY_DIGITS =  ''.join([str(digit) for digit in range(PIECE_KEY_BASE)])
 
 if __name__ == '__main__':
-    print(PIECE_KEY_DIGITS)
+    assert len(PIECE_KEY_DIGITS) == PIECE_KEY_BASE
+    assert MAX_PIECE_KEY == '2222'
+    assert MAX_NUMBER_PIECE_KEYS == PIECE_KEY_BASE ** PIECE_KEY_NUMBER_DIGITS
+
 

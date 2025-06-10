@@ -13,7 +13,7 @@ def get_from_argvs(current_args,
                    once_def = True,
                    width_def = 82, 
                    height_def = 22, 
-                   sleep_time_def = .1):
+                   sleep_time_def = 1):
 
     once = once_def
     width = width_def

@@ -15,7 +15,9 @@ def main():
 
     current_argv = sys.argv
 
-    max_width, max_height, sleep_time, count, opposite_key = get_from_argvs(current_argv)
+    count, max_width, max_height, sleep_time, opposite_key = get_from_argvs(current_argv)
+
+    
 
     scale_x = 3
     scale_y = 3

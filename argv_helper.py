@@ -27,7 +27,7 @@ def get_from_argvs(current_args,
     sleep_time = sleep_time_def
     opposite_key = opposite_key_def
     
-    # New argument order: count, width, height, delay, rule_id
+    # argument order: count, width, height, delay, rule_id
     # current_args[0] is script name
     # current_args[1] is count
     # current_args[2] is width
@@ -59,5 +59,5 @@ def get_from_argvs(current_args,
         case _:
             pass
     
-    # Return order must be maintained as: max_width, max_height, sleep_time, count, opposite_key
-    return max_width, max_height, sleep_time, count, opposite_key
+    
+    return count, max_width, max_height, sleep_time, opposite_key

@@ -1,4 +1,5 @@
-from base_piece import List, BasePiece, Directions, Coordinate, Edge
+from base_piece import List, BasePiece, Directions, Coordinate
+from edge import Edge, OPPOSITE_EDGE 
 from rotation_matrix import INDEX_ROTATION_MATRIX
 from piece_keys import PIECE_KEYS_IDENTITY
 from collections.abc import Callable
@@ -23,9 +24,15 @@ class PieceKeyPiece(BasePiece):
     def rotated_piece_key(self) -> List[str]:
         return [self.piece_key[i] for i in self.rotation]
        
-    def get_opposite_key_part(self, rotation_index: int, piece_key_index: int) -> str:
-        return self.opposite_piece_key[self.rotation_matrix[rotation_index][piece_key_index]]
+    def get_opposite_key_part(self, rotation_index: int, edge: Edge) -> str:
+        return self.opposite_piece_key[self.rotation_matrix[rotation_index][OPPOSITE_EDGE[edge]]]
     
     def set_piece_key(self, piece_key: str) -> None:
         self.piece_key = PIECE_KEYS_IDENTITY[piece_key]
-        self.opposite_piece_key = self.opposite_piece_keys[piece_key] 
+        self.opposite_piece_key = self.opposite_piece_keys[piece_key]
+
+    def is_changed(self, edge: Edge) -> bool:
+        return self.piece_key[edge] != self.inital_piece_key[edge]
+    
+
+    

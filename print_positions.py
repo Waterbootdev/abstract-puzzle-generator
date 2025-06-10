@@ -5,7 +5,7 @@ class PrintPositions:
 
     EMPTY = ['','','','']
 
-    def __init__(self, scale_x: int, scale_y: int, x: int, y: int) -> None:
+    def __init__(self, scale_x: int = 3, scale_y: int = 3, x: int = 1, y: int = 1) -> None:
        self.scale_x: int = scale_x
        self.scale_y: int = scale_y
        self.x: int = x
@@ -18,3 +18,7 @@ class PrintPositions:
     def empty_print_positions(self, coordinate: Coordinate, directions: List[Directions]) -> List[str]:
         return PrintPositions.EMPTY
     
+DEFAULT_PRINT_POSITIONS: PrintPositions = PrintPositions()
+
+if __name__ == '__main__':
+    pass

@@ -16,14 +16,14 @@ class RandomPieceKeyPiece(PieceKeyPiece):
             raise Exception()
         
     def fit_piece_key(self) -> str:
-        parts = [part for part in self.piece_key]
+        piece_key = list(self.piece_key)
     
         for edge in self.edges:
-            parts[edge] = self.fit_part(self.links[edge], edge)
+            piece_key[edge] = self.fit_part(self.links[edge], edge)
         
-        return ''.join(parts)
+        return ''.join(piece_key)
             
-    def fit_edges(self) -> None:
+    def fit_piece(self) -> None:
         self.set_piece_key(self.fit_piece_key())
 
     

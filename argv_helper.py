@@ -11,8 +11,8 @@ def cast_bool(current_args):
 
 def get_from_argvs(current_args, 
                    once_def = True,
-                   width_def = 40, 
-                   height_def = 15, 
+                   width_def = 82, 
+                   height_def = 22, 
                    sleep_time_def = .1):
 
     once = once_def
@@ -25,15 +25,15 @@ def get_from_argvs(current_args,
             once = cast_bool(current_args)
         case 3:             
             once = cast_bool(current_args)
-            width = cast_number(int, current_args[2], width_def, 1)
+            width = cast_number(int, current_args[2], width_def, 0)
         case 4: 
             once = cast_bool(current_args)
-            width = cast_number(int, current_args[2], width_def, 1)
-            height = cast_number(int, current_args[3], height_def, 1)
+            width = cast_number(int, current_args[2], width_def, 0)
+            height = cast_number(int, current_args[3], height_def, 0)
         case 5: 
             once = cast_bool(current_args)
-            width = cast_number(int, current_args[2], width_def, 1)
-            height = cast_number(int, current_args[3], height_def, 1)
+            width = cast_number(int, current_args[2], width_def, 0)
+            height = cast_number(int, current_args[3], height_def, 0)
             sleep_time = cast_number(float, current_args[4], sleep_time_def, 0.0)
         case _:
             pass

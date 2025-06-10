@@ -19,10 +19,10 @@ class PieceKeyPiece(BasePiece):
     
 
     def __repr__(self) -> str:
-        return PIECE_KEYS_IDENTITY[''.join(self.rotated_piece_key())]
+        return self.rotated_piece_key()
 
-    def rotated_piece_key(self) -> List[str]:
-        return [self.piece_key[i] for i in self.rotation]
+    def rotated_piece_key(self) -> str:
+        return PIECE_KEYS_IDENTITY[''.join([self.piece_key[i] for i in self.rotation])]
        
     def get_opposite_key_part(self, rotation_index: int, edge: Edge) -> str:
         return self.opposite_piece_key[self.rotation_matrix[rotation_index][OPPOSITE_EDGE[edge]]]

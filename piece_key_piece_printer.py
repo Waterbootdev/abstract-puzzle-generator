@@ -11,6 +11,9 @@ class PieceKeyPiecePrinter:
         self.red = red
         self.yellow = yellow
         self.green = green
+        self.blue = blue
+        self.red_count = 0
+        self.green_count = 0
 
     def print_pieces(self, pieces: List[KeyPiece],  edge : Edge, color: EscapeColor):
         print(color.value)
@@ -18,7 +21,7 @@ class PieceKeyPiecePrinter:
             print_piece_key_edge(piece, edge)
 
     def print_blue(self, piece: PieceKeyPiece):
-        print(EscapeColor.BLUE.value)
+        print(self.blue.value)
         for edge in LEFT_UP_RIGHT_DOWN:
             print_initial_piece_key_edge(piece, edge)
 
@@ -31,8 +34,11 @@ class PieceKeyPiecePrinter:
         for edge in piece.edges:
             if piece.is_changed(edge):
                 print(self.red.value)
+                self.red_count += 1
+
             else:
                 print(self.green.value)
+                self.green_count += 2
             print_piece_key_edge(piece, edge)
             
     def print_changes(self, pieces: List[KeyPiece]):
@@ -42,6 +48,16 @@ class PieceKeyPiecePrinter:
             self.print_yellow(piece)
             sleep(self.seconds)
             self.print_red_or_green(piece)
+
+    def print_counts(self) -> None:
+        PieceKeyPiecePrinter.print_count(self.red, self.red_count)
+        PieceKeyPiecePrinter.print_count(self.green, self.green_count)
+    
+    @staticmethod
+    def print_count(color: EscapeColor, count: int) -> None:
+        print(color.value)
+        print(f'color_count = {count}')
+        
 
 if __name__ == '__main__':
    pass

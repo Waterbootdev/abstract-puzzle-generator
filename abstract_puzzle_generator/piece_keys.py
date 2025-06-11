@@ -11,12 +11,6 @@ PIECE_KEYS_123: List[str] =[key[:3] for key in  PIECE_KEYS]
 
 PIECE_KEYS_STARTS: Set[str] = set(PIECE_KEYS + PIECE_KEYS_1 + PIECE_KEYS_12 + PIECE_KEYS_123)
 
-PIECE_KEYS_STARTS_WITH: Dict[str, List[str]] = {start : [key for key in PIECE_KEYS if key.startswith(start)] for start in PIECE_KEYS_STARTS}
-
-PIECE_KEYS_ENDS_WITH_STARTS_WITH: Dict[str, Dict[str, List[str]]] = {end : {start : [key for key in [key for key in PIECE_KEYS if key.endswith(end)] if key.startswith(start)] for start in PIECE_KEYS_STARTS}  for end in PIECE_KEYS_STARTS}
-
-PIECE_KEY_LISTS: Dict[str, List[str]] = {key: [a for a in key] for key in PIECE_KEYS}
-
 PIECE_KEYS_IDENTITY: Dict[str, str] = {key: key for key in PIECE_KEYS}
 
 if __name__ == '__main__':

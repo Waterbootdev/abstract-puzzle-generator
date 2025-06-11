@@ -34,7 +34,7 @@ def do_once_random(width: int, height: int, printer: PieceKeyPiecePrinter):
 
     do_once(printer, generate_random_pieces(w, h, opposite_key = random.choice(OPPOSITE_KEYS)))
 
-def generate_random_pieces(width: int , height: int, print_positions: PrintPositions = DEFAULT_PRINT_POSITIONS, opposite_key = DEFAULT_OPPOSITE_KEY):
+def generate_random_pieces(width: int , height: int, print_positions: PrintPositions = DEFAULT_PRINT_POSITIONS,  opposite_key: str = DEFAULT_OPPOSITE_KEY):
 
     return RandomPieceGenerator(width, height,print_positions, opposite_key)
 

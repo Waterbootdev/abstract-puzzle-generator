@@ -13,7 +13,7 @@ class NormalVector:
         return f'[{self.x}, {self.y}]'
     
     @staticmethod
-    def normalize(v):
+    def normalize(v: int):
         return 0 if v == 0 else 1 if v > 0 else -1
           
     def rotate_cw(self):

@@ -1,6 +1,7 @@
 from generate_spiral import generate_spiral, Edge
-from base_piece_helper import generate_linked_base_pieces, Directions, Coordinate, Callable
-from base_piece import Piece, Generic, List
+from base_piece_helper import generate_linked_base_pieces, Directions, Coordinate, Callable, Piece
+from base_piece import List
+from typing import Generic
 
 class PieceGenerator(Generic[Piece]):
 

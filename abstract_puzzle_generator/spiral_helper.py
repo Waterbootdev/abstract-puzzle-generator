@@ -33,6 +33,8 @@ def generate_rotated(width: int, height: int, length: int) -> List[bool]:
                 step_counts.append(last_right - 2)
             case 2:
                 step_counts.extend([last_right - 2, last_down - 2, last_left -2])
+            case _:
+                pass
     
     rotated = list(chain.from_iterable(map(lambda steps_without_rotation : [False for _ in range(steps_without_rotation - 1)] + [True], step_counts)))
 
@@ -44,8 +46,8 @@ def generate_rotated(width: int, height: int, length: int) -> List[bool]:
 def generate_frame_index(rotated: List[bool]) -> Tuple[List[int], List[int]]:
     frame_index = 0
     rotation_index = 0
-    frame_indexes = []
-    rotation_indexes = []
+    frame_indexes: List[int] = []
+    rotation_indexes: List[int] = []
 
     for rotate in rotated:
         current_frame_index = frame_index
@@ -66,7 +68,7 @@ def generate_frame_index(rotated: List[bool]) -> Tuple[List[int], List[int]]:
 def generate_directions(rotated: List[bool]) -> List[List[Directions]]:
     ring = Ring[List[Directions]](DIRECTIONSLISTLIST)
    
-    def generate(step_rotate):
+    def generate(step_rotate: bool):
         current = ring.current()
         if step_rotate:
             ring.forward()
@@ -90,7 +92,7 @@ def generate_backward(length: int) -> List[int|None]:
     return[None if i == 0 else i - 1 for i in range(length)]
 
 def generate_turns(rotated: List[bool]) -> List[int]:
-    turns = []
+    turns: List[int] = []
     for index, rotate in enumerate(rotated):
         if rotate:
             turns.append(index)

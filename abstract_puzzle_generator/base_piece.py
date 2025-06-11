@@ -1,11 +1,10 @@
 from coordinate import Coordinate
 from directions import List, Directions
 from edge import Edge
-from typing import TypeVar,Generic
+from typing import Any
 
-P = TypeVar("P")
 
-class BasePiece(Generic[P]):
+class BasePiece:
 
     def __init__(self, frame_index: int, rotation_index: int, rotated: bool, directions: List[Directions], coordinate: Coordinate, edges: List[Edge]) -> None:
 
@@ -16,11 +15,10 @@ class BasePiece(Generic[P]):
         self.directions = directions
         self.coordinate = coordinate
         self.edges = edges
-        self.links: List[P|None] = [None, None, None, None]
-        self.forward: P|None = None
-        self.backward: P|None = None
+        self.links: List[Any|None] = [None, None, None, None]
+        self.forward: Any|None = None
+        self.backward: Any|None = None
 
     def __repr__(self) -> str:
         return f'{self.frame_index}:{self.rotation_index}:{self.coordinate}:{self.rotated}:{self.directions}'
 
-Piece = TypeVar("Piece", bound=BasePiece)

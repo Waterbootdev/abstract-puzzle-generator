@@ -1,11 +1,12 @@
 from directions import Directions
+from typing import List
 
 class Coordinate:
 
     def __init__(self) -> None:
-        self.index = 0
-        self.x = 0
-        self.y = 0
+        self.index: int = 0
+        self.x: int = 0
+        self.y: int = 0
 
     def __repr__(self) -> str:
         return f"[{self.index}, [{self.x}, {self.y}]]"
@@ -30,26 +31,26 @@ class Coordinate:
     def down(self, directions: Directions):
         return directions.y.add_to(self.x, self.y)
 
-    def matix_left(self, matrix, directions: Directions):
+    def matix_left[T](self, matrix: List[List[T]], directions: Directions):
         x, y = self.left(directions)
         return matrix[x][y]
     
-    def matix_up(self, matrix, directions: Directions):
+    def matix_up[T](self, matrix: List[List[T]], directions: Directions):
         x, y = self.up(directions)
         return matrix[x][y]
 
-    def matix_right(self, matrix, directions: Directions):
+    def matix_right[T](self, matrix: List[List[T]], directions: Directions):
         x, y = self.right(directions)
         return matrix[x][y]
     
-    def matix_down(self, matrix, directions: Directions):
+    def matix_down[T](self, matrix: List[List[T]] , directions: Directions):
         x, y = self.down(directions)
         return matrix[x][y]
     
-    def set_to_matrix(self, matrix) -> None:
+    def set_to_matrix(self, matrix: List[List[int|None]]) -> None:
         matrix[self.x][self.y]= self.index
     
-    def get_from_matrix(self, matrix):
+    def get_from_matrix[T](self, matrix: List[List[T]]):
         return matrix[self.x][self.y]
         
     def step_right(self, directions: Directions):

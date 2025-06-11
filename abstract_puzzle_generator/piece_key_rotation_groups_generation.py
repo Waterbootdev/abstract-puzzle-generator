@@ -1,6 +1,7 @@
 from collections.abc import Callable
 from piece_key_constants import PIECE_KEY_NUMBER_DIGITS
 from piece_keys import List, Dict, PIECE_KEYS, PIECE_KEYS_IDENTITY
+from typing import Tuple
 
 def rotate_piece_cw(piece: str) -> str:
     return PIECE_KEYS_IDENTITY[piece[-1] + piece[:-1]]
@@ -23,9 +24,9 @@ def piece_rotation_group(rotate: Callable[[str], str], piece: str) -> List[str]:
 def shorten_rotation_group(group: List[str]) -> List[str]:
     return group[:len(set(group))]
 
-def generate_rotation_groups(rotation: Callable[[str], str]=rotate_piece_ccw) -> Dict[str, List[str]]:
-    done = set()
-    groups = dict()
+def generate_rotation_groups(rotation: Callable[[str], str]=rotate_piece_ccw) -> Dict[str,Tuple[List[str], List[str]]]:
+    done: set[str] = set()
+    groups: Dict[str,Tuple[List[str], List[str]]] = dict()
     for piece in PIECE_KEYS:
         if piece not in done:
             group = piece_rotation_group(rotation, piece)
@@ -35,5 +36,5 @@ def generate_rotation_groups(rotation: Callable[[str], str]=rotate_piece_ccw) ->
                 done.add(piece)
     return groups
 
-PIECE_KEYS_ROTATIONS: Dict[str, List[str]] = generate_rotation_groups()
+PIECE_KEYS_ROTATIONS: Dict[str,Tuple[List[str], List[str]]] = generate_rotation_groups()
 

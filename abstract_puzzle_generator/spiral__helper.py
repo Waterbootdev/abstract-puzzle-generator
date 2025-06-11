@@ -11,7 +11,7 @@ def decrement_coordinates(coordinates: List[Coordinate]) -> List[Coordinate]:
 
 def generate_coordinates(coordinate: Coordinate, rotated: List[bool], directions: List[List[Directions]]) -> List[Coordinate]:
     
-    def step(rotate, directions):
+    def step(rotate: bool, directions: List[Directions]):
         save = copy(coordinate)
         direction = directions[0]
         if rotate:
@@ -28,8 +28,8 @@ def incremented_coordinate() -> Coordinate:
     return coordinate
 
 
-def to_matrix(width: int , height: int, coordinates: List[Coordinate]) -> List[List[int]] | List[List[None]] :
-    matrix = [[None for _ in range(height + 2)] for _ in range(width + 2)]
+def to_matrix(width: int , height: int, coordinates: List[Coordinate]) -> List[List[int|None]]  :
+    matrix: List[List[int|None]] = [[None for _ in range(height + 2)] for _ in range(width + 2)]
 
     for coordinate in coordinates:
         assert isinstance(coordinate, Coordinate)

@@ -7,7 +7,7 @@ def int_to_significant(value: int) -> str:
     if value < PIECE_KEY_BASE:
         return str(value)
     
-    digits = []
+    digits: list[str] = []
     
     while value:
         digits.append(PIECE_KEY_DIGITS[value % PIECE_KEY_BASE])

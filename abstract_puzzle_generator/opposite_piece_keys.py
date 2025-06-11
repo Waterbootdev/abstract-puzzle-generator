@@ -1,4 +1,4 @@
-from piece_keys import PIECE_KEYS, PIECE_KEYS_IDENTITY, Dict, PIECE_KEYS_STARTS, List
+from piece_keys import PIECE_KEYS, PIECE_KEYS_IDENTITY, Dict, PIECE_KEYS_STARTS
 from piece_key_constants import PIECE_KEY_BASE, PIECE_KEY_DIGITS
 
 

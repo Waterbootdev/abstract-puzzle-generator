@@ -10,6 +10,6 @@ def print_piece_key_edge(piece: PieceKeyPiece, index: Edge):
 def print_initial_piece_key_edge(piece: PieceKeyPiece, index: Edge):
     print(piece.print_positions[index]+piece.inital_piece_key[index])
 
-def print_at(position, color: EscapeColor, part):
+def print_at(position: str, color: EscapeColor, part: str):
     print(position + color.value + part)
         

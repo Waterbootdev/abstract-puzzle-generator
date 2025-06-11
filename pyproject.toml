@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "abstract-puzzle-generator"
+version = "0.1.0"
+description = "Ein Paket zum Erzeugen abstrakter Puzzles"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name="Reibekuchenteich", email="wassermann.sp@gmail.com" }]
+requires-python = ">=3.7"
+dependencies = [
+]
+
+[project.urls]
+"Homepage" = "https://github.com/Waterbootdev/abstract-puzzle-generator"

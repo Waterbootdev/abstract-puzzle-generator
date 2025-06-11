@@ -1,4 +1,11 @@
-def cast_number(type, number_str: str, default, minimum):
+from typing import TypeVar, List
+from collections.abc import Callable
+
+T = TypeVar("T", int, float)
+
+
+
+def cast_number(type: Callable[[str], T], number_str: str, default: T, minimum: T):
     try:
         value = max(minimum, type(number_str))
     except Exception:
@@ -6,14 +13,14 @@ def cast_number(type, number_str: str, default, minimum):
     else:
         return value
         
-def cast_bool(current_args):
+def cast_bool(current_args: List[str]):
     return True if current_args[1].lower() == 'true' else False
 
-def get_from_argvs(current_args, 
-                   once_def = True,
-                   width_def = 82, 
-                   height_def = 22, 
-                   sleep_time_def = 1):
+def get_from_argvs(current_args: List[str], 
+                   once_def: bool = True,
+                   width_def: int = 82, 
+                   height_def: int = 22, 
+                   sleep_time_def: float = 1) -> tuple[bool, int, int, float]:
 
     once = once_def
     width = width_def

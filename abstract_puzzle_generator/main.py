@@ -6,7 +6,7 @@ from edge import Edge
 from random_piece_generator import RandomPieceGenerator
 from piece_key_piece_printer import PieceKeyPiecePrinter, EscapeColor
 from piece_key_piece_helper import print_key_groups_counts
-from print_positions import DEFAULT_PRINT_POSITIONS
+from print_positions import DEFAULT_PRINT_POSITIONS,PrintPositions
 from opposite_piece_keys import OPPOSITE_KEYS, DEFAULT_OPPOSITE_KEY
 import sys
 
@@ -27,19 +27,19 @@ def main():
 
             time.sleep(2)
 
-def do_once_random(width, height, printer):
+def do_once_random(width: int, height: int, printer: PieceKeyPiecePrinter):
     
     w = random.choice(range(width + 1))
     h = random.choice(range(min(w, height + 1))) if w > 0 else 0
 
     do_once(printer, generate_random_pieces(w, h, opposite_key = random.choice(OPPOSITE_KEYS)))
 
-def generate_random_pieces(width, height, print_positions = DEFAULT_PRINT_POSITIONS, opposite_key = DEFAULT_OPPOSITE_KEY):
+def generate_random_pieces(width: int , height: int, print_positions: PrintPositions = DEFAULT_PRINT_POSITIONS, opposite_key = DEFAULT_OPPOSITE_KEY):
 
     return RandomPieceGenerator(width, height,print_positions, opposite_key)
 
 
-def do_once(printer, random_pieces, print_positions = DEFAULT_PRINT_POSITIONS):
+def do_once(printer: PieceKeyPiecePrinter, random_pieces: RandomPieceGenerator, print_positions: PrintPositions = DEFAULT_PRINT_POSITIONS):
     
     os.system("clear")
       
